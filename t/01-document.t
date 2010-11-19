@@ -1,7 +1,7 @@
 use v6;
 use Test;
 
-plan 3;
+plan 4;
 
 use DOM;
 
@@ -17,6 +17,11 @@ my $document = DOMImplementation.createDocument(Str, 'html', $doctype);
 isa_ok $document, Document, "the document is a Document";
 isa_ok $document.doctype, DocumentType, "the doctype is a DocumentType";
 ok $document.doctype === $doctype, "...and it's the one we passed in";
+
+my $documentWithoutDoctype
+    = DOMImplementation.createDocument(Str, 'html', DocumentType);
+ok !$documentWithoutDoctype.doctype.defined,
+   "doctype is undefined if type object passed in";
 
 my $html = $document.documentElement;
 my $head = $document.createElement('head');
