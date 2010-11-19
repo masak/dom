@@ -17,7 +17,7 @@ class DOMImplementation {
         Str $qualifiedName,
         DocumentType $doctype --> Document)
     {
-        return Document.new();
+        return Document.new(:$doctype);
     }
 }
 
@@ -26,8 +26,4 @@ class DocumentType {
 
 class Document {
     has DocumentType $.doctype;
-
-    submethod BUILD() {
-        $!doctype = DocumentType.new();
-    }
 }

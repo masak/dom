@@ -1,20 +1,22 @@
 use v6;
 use Test;
 
-plan 2;
+plan 3;
 
 use DOM;
 
 # Code adapted from
 # http://se.php.net/manual/en/domimplementation.createdocument.php
-my $document
-    = DOMImplementation.createDocument(Str, 'html',
-        DOMImplementation.createDocumentType('html',
+my $doctype
+    = DOMImplementation.createDocumentType('html',
             '-//W3C//DTD XHTML 1.0 Transitional//EN',
-            'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'));
+            'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd');
+
+my $document = DOMImplementation.createDocument(Str, 'html', $doctype);
 
 isa_ok $document, Document, "the document is a Document";
 isa_ok $document.doctype, DocumentType, "the doctype is a DocumentType";
+ok $document.doctype === $doctype, "...and it's the one we passed in";
 
 my $html = $document.documentElement;
 my $head = $document.createElement('head');
