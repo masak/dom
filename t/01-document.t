@@ -1,7 +1,7 @@
 use v6;
 use Test;
 
-plan 1;
+plan 2;
 
 use DOM;
 
@@ -14,6 +14,7 @@ my $document
             'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'));
 
 isa_ok $document, Document, "the document is a Document";
+isa_ok $document.doctype, DocumentType, "the doctype is a DocumentType";
 
 my $html = $document.documentElement;
 my $head = $document.createElement('head');

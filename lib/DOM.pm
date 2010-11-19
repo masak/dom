@@ -9,6 +9,7 @@ class DOMImplementation {
         Str $publicId,
         Str $systemId --> DocumentType)
     {
+        return DocumentType.new();
     }
 
     our method createDocument(
@@ -20,5 +21,13 @@ class DOMImplementation {
     }
 }
 
+class DocumentType {
+}
+
 class Document {
+    has DocumentType $.doctype;
+
+    submethod BUILD() {
+        $!doctype = DocumentType.new();
+    }
 }
