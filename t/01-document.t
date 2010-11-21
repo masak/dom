@@ -1,7 +1,7 @@
 use v6;
 use Test;
 
-plan 4;
+plan 5;
 
 use DOM;
 
@@ -23,3 +23,5 @@ my $documentWithoutDoctype
     = DOM::DOMImplementation.createDocument(Str, 'html', DOM::DocumentType);
 ok !$documentWithoutDoctype.doctype.defined,
    "doctype is undefined if type object passed in";
+
+is $document.localName, 'html', "local name was set";

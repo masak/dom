@@ -4,7 +4,7 @@ class DOM::DocumentType { ... }
 class DOM::Document { ... }
 
 class DOM::DOMImplementation {
-    our method createDocumentType(
+    method createDocumentType(
         Str $qualifiedName,
         Str $publicId,
         Str $systemId --> DOM::DocumentType)
@@ -12,18 +12,22 @@ class DOM::DOMImplementation {
         return DOM::DocumentType.new();
     }
 
-    our method createDocument(
+    method createDocument(
         Str $namespaceURI,
         Str $qualifiedName,
         DOM::DocumentType $doctype --> DOM::Document)
     {
-        return DOM::Document.new(:$doctype);
+        return DOM::Document.new(:localName($qualifiedName), :$doctype);
     }
 }
 
 class DOM::DocumentType {
 }
 
-class DOM::Document {
+role DOM::Node {
+    has Str $.localName;
+}
+
+class DOM::Document does DOM::Node {
     has DOM::DocumentType $.doctype;
 }
