@@ -1,7 +1,7 @@
 use v6;
 use Test;
 
-plan 6;
+plan 7;
 
 use DOM;
 
@@ -27,3 +27,6 @@ ok !$documentWithoutDoctype.doctype.defined,
 is $document.localName, 'html', "local name was set";
 is $doctype.publicId, '-//W3C//DTD XHTML 1.0 Transitional//EN',
     "publicId was set";
+is $doctype.systemId,
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd',
+    "systemId was set";

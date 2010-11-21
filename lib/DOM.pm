@@ -10,7 +10,7 @@ class DOM::DOMImplementation {
         Str $systemId
             --> DOM::DocumentType)
     {
-        return DOM::DocumentType.new(:$publicId);
+        return DOM::DocumentType.new(:$publicId, :$systemId);
     }
 
     method createDocument(
@@ -25,6 +25,7 @@ class DOM::DOMImplementation {
 
 class DOM::DocumentType {
     has Str $.publicId;
+    has Str $.systemId;
 }
 
 role DOM::Node {
