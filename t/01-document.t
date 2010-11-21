@@ -1,7 +1,7 @@
 use v6;
 use Test;
 
-plan 5;
+plan 6;
 
 use DOM;
 
@@ -25,3 +25,5 @@ ok !$documentWithoutDoctype.doctype.defined,
    "doctype is undefined if type object passed in";
 
 is $document.localName, 'html', "local name was set";
+is $doctype.publicId, '-//W3C//DTD XHTML 1.0 Transitional//EN',
+    "publicId was set";

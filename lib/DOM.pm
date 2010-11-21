@@ -7,21 +7,24 @@ class DOM::DOMImplementation {
     method createDocumentType(
         Str $qualifiedName,
         Str $publicId,
-        Str $systemId --> DOM::DocumentType)
+        Str $systemId
+            --> DOM::DocumentType)
     {
-        return DOM::DocumentType.new();
+        return DOM::DocumentType.new(:$publicId);
     }
 
     method createDocument(
         Str $namespaceURI,
         Str $qualifiedName,
-        DOM::DocumentType $doctype --> DOM::Document)
+        DOM::DocumentType $doctype
+            --> DOM::Document)
     {
         return DOM::Document.new(:localName($qualifiedName), :$doctype);
     }
 }
 
 class DOM::DocumentType {
+    has Str $.publicId;
 }
 
 role DOM::Node {
