@@ -1,29 +1,29 @@
 use v6;
 
-class DocumentType { ... }
-class Document { ... }
+class DOM::DocumentType { ... }
+class DOM::Document { ... }
 
-class DOMImplementation {
+class DOM::DOMImplementation {
     our method createDocumentType(
         Str $qualifiedName,
         Str $publicId,
-        Str $systemId --> DocumentType)
+        Str $systemId --> DOM::DocumentType)
     {
-        return DocumentType.new();
+        return DOM::DocumentType.new();
     }
 
     our method createDocument(
         Str $namespaceURI,
         Str $qualifiedName,
-        DocumentType $doctype --> Document)
+        DOM::DocumentType $doctype --> DOM::Document)
     {
-        return Document.new(:$doctype);
+        return DOM::Document.new(:$doctype);
     }
 }
 
-class DocumentType {
+class DOM::DocumentType {
 }
 
-class Document {
-    has DocumentType $.doctype;
+class DOM::Document {
+    has DOM::DocumentType $.doctype;
 }

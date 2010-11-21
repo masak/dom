@@ -8,17 +8,18 @@ use DOM;
 # Code adapted from
 # http://se.php.net/manual/en/domimplementation.createdocument.php
 my $doctype
-    = DOMImplementation.createDocumentType('html',
+    = DOM::DOMImplementation.createDocumentType('html',
             '-//W3C//DTD XHTML 1.0 Transitional//EN',
             'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd');
 
-my $document = DOMImplementation.createDocument(Str, 'html', $doctype);
+my $document = DOM::DOMImplementation.createDocument(Str, 'html', $doctype);
 
-isa_ok $document, Document, "the document is a Document";
-isa_ok $document.doctype, DocumentType, "the doctype is a DocumentType";
+isa_ok $document, DOM::Document, "the document is a DOM::Document";
+isa_ok $document.doctype, DOM::DocumentType,
+    "the doctype is a DOM::DocumentType";
 ok $document.doctype === $doctype, "...and it's the one we passed in";
 
 my $documentWithoutDoctype
-    = DOMImplementation.createDocument(Str, 'html', DocumentType);
+    = DOM::DOMImplementation.createDocument(Str, 'html', DOM::DocumentType);
 ok !$documentWithoutDoctype.doctype.defined,
    "doctype is undefined if type object passed in";
