@@ -2,6 +2,7 @@ use v6;
 
 class DOM::DocumentType { ... }
 class DOM::Document { ... }
+class DOM::Element { ... }
 
 class DOM::DOMImplementation {
     method createDocumentType(
@@ -19,7 +20,10 @@ class DOM::DOMImplementation {
         DOM::DocumentType $doctype
             --> DOM::Document)
     {
-        return DOM::Document.new(:localName($qualifiedName), :$doctype);
+        return DOM::Document.new(
+            :localName($qualifiedName), :$doctype,
+            :documentElement(DOM::Element.new())
+        );
     }
 }
 
@@ -34,4 +38,8 @@ role DOM::Node {
 
 class DOM::Document does DOM::Node {
     has DOM::DocumentType $.doctype;
+    has DOM::Element      $.documentElement;
+}
+
+class DOM::Element does DOM::Node {
 }
