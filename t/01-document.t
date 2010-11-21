@@ -22,16 +22,3 @@ my $documentWithoutDoctype
     = DOMImplementation.createDocument(Str, 'html', DocumentType);
 ok !$documentWithoutDoctype.doctype.defined,
    "doctype is undefined if type object passed in";
-
-my $html = $document.documentElement;
-my $head = $document.createElement('head');
-my $title = $document.createElement('title');
-my $text = $document.createTextNode('Title of Page');
-my $body = $document.createElement('body');
-
-$title.appendChild($text);
-$head.appendChild($title);
-$html.appendChild($head);
-$html.appendChild($body);
-
-$document.Str();
