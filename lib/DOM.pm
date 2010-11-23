@@ -34,10 +34,16 @@ class DOM::DocumentType {
 }
 
 role DOM::Node {
-    has Str $.localName;
+    has Str       $.localName;
+    has DOM::Node @!childNodes;
 
     method childNodes(--> DOM::NodeList) {
-        return DOM::NodeList.new();
+        return DOM::NodeList.new(@!childNodes);
+    }
+
+    method appendChild(DOM::Node $newChild --> DOM::Node) {
+        @!childNodes.push($newChild);
+        return $newChild;
     }
 }
 
@@ -54,7 +60,13 @@ class DOM::Element does DOM::Node {
 }
 
 class DOM::NodeList {
+    has DOM::Node @!nodes;
+
+    method new(@nodes) {
+        self.bless(*, :@nodes);
+    }
+
     method Numeric(--> Int) {
-        return 0;
+        return @!nodes.elems;
     }
 }
