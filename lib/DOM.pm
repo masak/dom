@@ -41,6 +41,10 @@ role DOM::Node {
         return DOM::NodeList.new(@!childNodes);
     }
 
+    method firstChild(--> DOM::Node) {
+        return @!childNodes[0];
+    }
+
     method appendChild(DOM::Node $newChild --> DOM::Node) {
         @!childNodes.push($newChild);
         return $newChild;
