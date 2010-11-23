@@ -34,8 +34,9 @@ class DOM::DocumentType {
 }
 
 role DOM::Node {
-    has Str       $.localName;
-    has DOM::Node @!childNodes;
+    has Str           $.localName;
+    has DOM::Node     @!childNodes;
+    has DOM::Document $.ownerDocument;
 
     method childNodes(--> DOM::NodeList) {
         return DOM::NodeList.new(@!childNodes);
@@ -56,7 +57,13 @@ class DOM::Document does DOM::Node {
     has DOM::Element      $.documentElement;
 
     method createElement(Str $tagname) {
-        return DOM::Element.new(:localname($tagname));
+        die "The createElement method can't be called on the type object"
+            unless defined self;
+
+        return DOM::Element.new(
+            :localname($tagname),
+            :ownerDocument(self)
+        );
     }
 }
 
