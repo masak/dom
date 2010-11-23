@@ -22,7 +22,7 @@ class DOM::DOMImplementation {
     {
         return DOM::Document.new(
             :localName($qualifiedName), :$doctype,
-            :documentElement(DOM::Element.new())
+            :documentElement(DOM::Element.new(:localName($qualifiedName)))
         );
     }
 }

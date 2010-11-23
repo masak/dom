@@ -1,7 +1,7 @@
 use v6;
 use Test;
 
-plan 1;
+plan 2;
 
 use DOM;
 
@@ -14,5 +14,8 @@ my $doctype
 
 my $document = DOM::DOMImplementation.createDocument(Str, 'html', $doctype);
 
-isa_ok $document.documentElement(), DOM::Element,
+my $docelem = $document.documentElement();
+isa_ok $docelem, DOM::Element,
        "document.element is an Element";
+is $docelem.localName, 'html',
+        "local name of document.element equals that of document";
