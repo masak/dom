@@ -1,0 +1,4 @@
+document.getElementById(id)
+element.getElementsByTagName(name)
+element.setAttribute
+element.getAttribute

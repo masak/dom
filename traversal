@@ -1,0 +1,5 @@
+firstElementChild
+lastElementChild
+previousElementSibling
+nextElementSibling
+childElementCount
